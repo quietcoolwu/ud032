@@ -13,6 +13,8 @@ You can use the csv modules "reader" method to get data in such format.
 Another useful method is next() - to get the next line from the iterator.
 You should only change the parse_file function.
 """
+from __future__ import print_function, unicode_literals
+
 import csv
 import os
 
@@ -24,7 +26,13 @@ def parse_file(datafile):
     name = ""
     data = []
     with open(datafile,'rb') as f:
-        pass
+        reader = csv.reader(f)
+        name = reader.next()[1]
+        header = reader.next()
+        # print(header)
+        for row in reader:
+            data.append(row)
+
     # Do not change the line below
     return (name, data)
 
